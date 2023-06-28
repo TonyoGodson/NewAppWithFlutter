@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'model/news_model.dart';
+
 class NewsDetails extends StatefulWidget {
   static const routeName = '/news_details';
   const NewsDetails({Key? key}) : super(key: key);
@@ -9,11 +11,14 @@ class NewsDetails extends StatefulWidget {
 }
 
 class _NewsDetailsState extends State<NewsDetails> {
+  static List<NewsModel> _newsInApp = <NewsModel>[];
+
   @override
   Widget build(BuildContext context) {
+    final newsModel = ModalRoute.of(context)?.settings.arguments as NewsModel;
     return Scaffold(
       appBar: AppBar(
-        title: Text("News Details",
+        title: Text(newsModel.title,
         style: TextStyle(color: Colors.black),),
         backgroundColor: Colors.white,
         centerTitle: true,
@@ -22,7 +27,8 @@ class _NewsDetailsState extends State<NewsDetails> {
             Navigator.of(context).pop();
             },
           icon: const Icon(
-              Icons.arrow_back_ios
+              Icons.arrow_back_ios,
+            color: Colors.black,
           ),),
       ),
       body: Center(
@@ -30,8 +36,13 @@ class _NewsDetailsState extends State<NewsDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.network(""),
-              Text("title",
+              Container(
+                width: MediaQuery.of(context).size.width,
+                  child: Image.network(
+                    newsModel.image,
+                    fit: BoxFit.fill ,
+                  )),
+              Text(newsModel.title,
                 style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,

@@ -10,18 +10,9 @@ class NewsModel{
   late String image;
   late String date;
 
-  NewsModel({
-    required this.id,
-    required this.url,
-    required this.title,
-    required this.date,
-    required this.author,
-    required this.publisher,
-    required this.text,
-    required this.image,
-  });
+  NewsModel(this.id, this.url, this.title, this.date, this.author, this.publisher, this.text, this.image);
 
-  NewsModel.fromJso(Map<String, dynamic> json){
+  NewsModel.fromJson(Map<String, dynamic> json){
     id = json['id'] ?? '';
     url = json['url'] ?? '';
     title = json['title'] ?? '';
