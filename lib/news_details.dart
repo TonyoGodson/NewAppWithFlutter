@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import 'model/news_model.dart';
 
@@ -110,8 +108,11 @@ class _NewsDetailsState extends State<NewsDetails> {
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: GestureDetector(
                     onTap: () async {
-                      if(await canLaunchUrlString(newsModel.url)){
-                        await launch(newsModel.url);
+                      final url = Uri.parse(newsModel.url);
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url);
+                      // if(await canLaunchUrlString(newsModel.url)){
+                      //   await launchUrl(newsModel.url);
                       }
                     },
                     child: Text("full story at: ${newsModel.date}",
