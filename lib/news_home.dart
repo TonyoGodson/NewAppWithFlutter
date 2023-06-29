@@ -26,6 +26,7 @@ class _NewsHomeState extends State<NewsHome> {
       var url = Uri.parse("http://www.mocky.io/v2/5ecfddf13200006600e3d6d0");
       var response = await http.get(url);
       var news = <NewsModel>[];
+      print("response is ${response.statusCode}");
       if (response.statusCode == 200) {
         var newsItems = json.decode(response.body);
         for (var item in newsItems) {
@@ -111,12 +112,7 @@ class _NewsHomeState extends State<NewsHome> {
         style: TextStyle(
         fontSize: 18.0,
         color: Colors.black26
-        )
-    ),
-    ),
-    ],
-    ),
-    ),
+        )),),],),),
     Expanded(
     flex: 1,
     child: IconButton(
@@ -126,10 +122,7 @@ class _NewsHomeState extends State<NewsHome> {
     },
     icon: const Icon(
     Icons.arrow_forward_ios
-    ),),
-    ),
-    ],
-    ),
+    ),),),],),
     Padding(
     padding: const EdgeInsets.only(top: 5),
     child: Divider(
